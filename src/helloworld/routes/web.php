@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,17 @@ use App\Http\Controllers\MemberController;
 //     return view('welcome');
 // });
 
-Route::get('/', [MemberController::class, 'index']);
+// Route::get('/', [MemberController::class, 'index']);
  
-Route::get('/show', [MemberController::class, 'getMembers']);
+// Route::get('/show', [MemberController::class, 'getMembers']);
  
-Route::post('/save', [MemberController::class, 'save']);
+// Route::post('/save', [MemberController::class, 'save']);
  
-Route::post('/delete', [MemberController::class, 'delete']);
+// Route::post('/delete', [MemberController::class, 'delete']);
  
-Route::post('/update', [MemberController::class, 'update']);
+// Route::post('/update', [MemberController::class, 'update']);
+
+Route::get('/', [UserController::class, 'index']);
+Route::post('/check', [UserController::class, 'check']);
+Route::get('/home', [UserController::class, 'home']);
+Route::get('/logout', [UserController::class, 'logout']);
