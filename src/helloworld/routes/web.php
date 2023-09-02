@@ -21,10 +21,8 @@ use App\Http\Controllers\MemberController;
 
 Route::get('/', [MemberController::class, 'index']);
  
-Route::get('/show', [MemberController::class, 'getMembers']);
+Route::get('/search', [MemberController::class, 'search']);
  
-Route::post('/save', [MemberController::class, 'save']);
+Route::get('/member/{id}', [MemberController::class, 'viewmember']);
  
-Route::post('/delete', [MemberController::class, 'delete']);
- 
-Route::post('/update', [MemberController::class, 'update']);
+Route::post('/find', [MemberController::class, 'find']);

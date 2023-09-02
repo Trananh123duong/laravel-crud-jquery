@@ -8,42 +8,34 @@ use App\Models\Member;
 class MemberController extends Controller
 {
     public function index(){
-        return view('show');
-    }
-     
-    public function getMembers(){
         $members = Member::all();
+        return view('search')->with('members', $members);
+    }
   
-        return view('memberlist', compact('members'));
+    public function search(Request $request){
+        $search = $request->input('search');
+  
+        $members = Member::where('firstname', 'like', "$search%")
+           ->orWhere('lastname', 'like', "$search%")
+           ->get();
+  
+        return view('result')->with('members', $members);
     }
-     
-    public function save(Request $request){
-        if ($request->ajax()){
-            // Create New Member
-            $member = new Member;
-            $member->firstname = $request->input('firstname');
-            $member->lastname = $request->input('lastname');
-            // Save Member
-            $member->save();
-             
-            return response($member);
-        }
+  
+    public function viewmember($id){
+  
+        $member = Member::find($id);
+  
+        return view('member')->with('member', $member);
     }
-     
-    public function delete(Request $request){
-        if ($request->ajax()){
-            Member::destroy($request->id);
-        }
-    }
- 
-    public function update(Request $request){
-        if ($request->ajax()){
-            $member = Member::find($request->id);
-            $member->firstname = $request->input('firstname');
-            $member->lastname = $request->input('lastname');
- 
-            $member->update();
-            return response($member);
-        }
+  
+    public function find(Request $request){
+        $search = $request->input('search');
+  
+        $members = Member::where('firstname', 'like', "$search%")
+           ->orWhere('lastname', 'like', "$search%")
+           ->get();
+  
+        return view('searchresult')->with('members', $members);
     }
 }
