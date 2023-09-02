@@ -40,7 +40,7 @@ services:
     ports:
       - "33062:3306"
     volumes:
-      - ./database/mysql:/var/lib/mysql
+      - ./databasedocker/mysql:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
