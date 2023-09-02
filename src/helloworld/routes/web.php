@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,8 @@ Route::post('/save', [MemberController::class, 'save']);
 Route::post('/delete', [MemberController::class, 'delete']);
  
 Route::post('/update', [MemberController::class, 'update']);
+
+
+Route::get('users/', [UserController::class, 'index']);
+ 
+Route::get('users/{id}', [UserController::class, 'show'])->name('users.show');
